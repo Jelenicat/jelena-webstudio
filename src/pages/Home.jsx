@@ -215,7 +215,13 @@ useEffect(() => {
             className="gallery-content"
             onClick={(e) => e.stopPropagation()}
           >
-            <button className="gallery-close">✕</button>
+           <button
+  className="gallery-close"
+  onClick={() => setActiveGallery(null)}
+>
+  ✕
+</button>
+
 
             <div className="gallery-grid">
               {galleries[activeGallery].map((img, index) => (
@@ -246,7 +252,16 @@ useEffect(() => {
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
           >
-            <button className="fullscreen-close">✕</button>
+           <button
+  className="fullscreen-close"
+  onClick={() => {
+    setIsFullscreen(false);
+    setIsZoomed(false);
+  }}
+>
+  ✕
+</button>
+
 
             <div className="slide-wrapper">
               <img
