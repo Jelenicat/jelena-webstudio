@@ -1,0 +1,208 @@
+/* Overlay */
+.contact-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.35s ease;
+}
+
+
+/* Modal */
+.contact-modal {
+  background: rgba(255, 255, 255, 0.7);
+  padding: 46px 44px;
+  width: 92%;
+  max-width: 420px;
+  border-radius: 22px;
+  position: relative;
+  animation: slideUp 0.4s ease;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+}
+
+.contact-modal h2 {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 26px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  font-style: italic;
+
+}
+
+
+.interest-options {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.interest-option {
+  flex: 1;
+  padding: 14px 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(190, 140, 150, 0.35);
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  font-size: 13px;
+  letter-spacing: 0.4px;
+  transition: all 0.25s ease;
+}
+
+
+.interest-option:hover {
+  border-color: rgba(190, 140, 150, 0.6);
+  background: rgba(190, 140, 150, 0.06);
+}
+
+
+.interest-option.active {
+  border-color: rgba(190, 140, 150, 0.9);
+  background: rgba(190, 140, 150, 0.12);
+}
+
+
+
+/* Inputs */
+.contact-modal input {
+  width: 100%;
+  padding: 15px;
+  font-size: 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,0.15);
+  margin-bottom: 16px;
+  background: transparent;
+  transition: border 0.25s ease;
+}
+
+.contact-modal input:focus {
+  outline: none;
+  border-color: rgba(0,0,0,0.6);
+}
+
+
+/* Submit */
+.contact-modal button[type="submit"] {
+  margin: 20px auto 0;
+  display: block;
+
+  padding: 15px 36px;
+  border-radius: 30px;
+  background: rgba(0,0,0,0.85);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.contact-modal button[type="submit"]:hover {
+  background: #000;
+}
+
+
+
+/* Close */
+.contact-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* Success */
+.contact-success {
+  text-align: center;
+}
+
+.contact-success h3 {
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.contact-success p {
+  font-size: 14px;
+  color: #555;
+}
+
+
+
+
+/* Floating button */
+.floating-contact {
+  position: fixed;
+  right: 22px;
+  bottom: 26px;
+  padding: 14px 24px;
+  background: rgba(0,0,0,0.85);
+  color: #fff;
+  border-radius: 40px;
+  border: none;
+  cursor: pointer;
+  z-index: 999;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  backdrop-filter: blur(4px);
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.contact-modal button[disabled] {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+.contact-modal button[type="submit"]:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(233, 190, 182, 0.95),
+    rgba(216, 160, 170, 0.95)
+  );
+  color: #000;
+}
+.fade-out {
+  animation: fadeOut 0.6s ease forwards;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

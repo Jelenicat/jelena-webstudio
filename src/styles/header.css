@@ -198,10 +198,15 @@
     background: var(--bg-light);
     display: none;
     flex-direction: column;
-    align-items: center;   /* ⬅️ KLJUČ */
+    align-items: center;
     padding: 48px 24px;
     animation: slideDown 0.35s ease forwards;
+        background: rgba(245, 241, 233, 1);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+
   }
+
 
 
   .nav a {
@@ -269,4 +274,25 @@
     opacity: 1;
   }
 }
+}
+@media (max-width: 768px) {
+
+  /* kada je meni otvoren */
+  #menu-toggle:checked ~ .header {
+    background: var(--bg-light);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+}
+@media (max-width: 768px) {
+  .header.menu-open {
+    background: var(--bg-light);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .header.menu-open .nav {
+    background: var(--bg-light);
+  }
 }

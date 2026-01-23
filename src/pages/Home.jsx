@@ -29,6 +29,8 @@ import app3 from "../assets/portfolio/app/app3.jpg";
 import app4 from "../assets/portfolio/app/app4.jpg";
 import app5 from "../assets/portfolio/app/app5.jpg";
 import app6 from "../assets/portfolio/app/app6.jpg";
+import ContactModal from "../components/ContactModal";
+import FloatingContact from "../components/FloatingContact";
 
 function Home() {
   /* ===== STATE ===== */
@@ -36,6 +38,7 @@ function Home() {
   const [activeIndex, setActiveIndex] = useState(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isZoomed, setIsZoomed] = useState(false);
+const [contactOpen, setContactOpen] = useState(false);
 
   /* ===== GALLERIES ===== */
   const galleries = {
@@ -319,6 +322,13 @@ function Home() {
           © {new Date().getFullYear()} jelena.webstudio
         </div>
       </footer>
+      <FloatingContact onClick={() => setContactOpen(true)} />
+
+<ContactModal
+  isOpen={contactOpen}
+  onClose={() => setContactOpen(false)}
+/>
+
     </>
   );
 }

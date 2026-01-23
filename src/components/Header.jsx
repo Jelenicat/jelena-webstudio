@@ -4,6 +4,7 @@ import logoHeader from "../assets/logo-header.png";
 
 function Header() {
   const [active, setActive] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
@@ -23,26 +24,26 @@ function Header() {
     return () => observer.disconnect();
   }, []);
 
-  /* ⬅️ ZATVARA MOBILE MENI */
   const closeMenu = () => {
-    const checkbox = document.getElementById("menu-toggle");
-    if (checkbox) checkbox.checked = false;
+    setMenuOpen(false);
   };
 
   return (
-    <header className="header">
-      {/* LOGO */}
+    <header className={`header ${menuOpen ? "menu-open" : ""}`}>
       <img
         src={logoHeader}
         alt="Jelena Web Studio"
         className="logo"
-        onClick={() =>
-          window.scrollTo({ top: 0, behavior: "smooth" })
-        }
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       />
 
-      {/* MOBILE TOGGLE */}
-      <input type="checkbox" id="menu-toggle" />
+      <input
+        type="checkbox"
+        id="menu-toggle"
+        checked={menuOpen}
+        onChange={(e) => setMenuOpen(e.target.checked)}
+      />
+
       <label
         htmlFor="menu-toggle"
         className="menu-icon"
@@ -51,12 +52,11 @@ function Header() {
         ☰
       </label>
 
-      {/* NAVIGATION */}
       <nav className="nav">
         <a
           href="#usluge"
           onClick={closeMenu}
-          className={`nav-item ${active === "usluge" ? "active" : ""}`}
+          className={active === "usluge" ? "active" : ""}
         >
           USLUGE
         </a>
@@ -64,17 +64,15 @@ function Header() {
         <a
           href="#portfolio"
           onClick={closeMenu}
-          className={`nav-item ${active === "portfolio" ? "active" : ""}`}
+          className={active === "portfolio" ? "active" : ""}
         >
           PORTFOLIO
         </a>
 
-       
-
         <a
           href="#kontakt"
           onClick={closeMenu}
-          className="btn-outline nav-item"
+          className="btn-outline"
         >
           KONTAKT
         </a>
