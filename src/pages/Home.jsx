@@ -31,14 +31,17 @@ import app5 from "../assets/portfolio/app/app5.jpg";
 import app6 from "../assets/portfolio/app/app6.jpg";
 import ContactModal from "../components/ContactModal";
 import FloatingContact from "../components/FloatingContact";
+import Splash from "../components/Splash";
 
 function Home() {
   /* ===== STATE ===== */
-  const [activeGallery, setActiveGallery] = useState(null);
-  const [activeIndex, setActiveIndex] = useState(null);
-  const [isFullscreen, setIsFullscreen] = useState(false);
-  const [isZoomed, setIsZoomed] = useState(false);
+ const [activeGallery, setActiveGallery] = useState(null);
+const [activeIndex, setActiveIndex] = useState(null);
+const [isFullscreen, setIsFullscreen] = useState(false);
+const [isZoomed, setIsZoomed] = useState(false);
 const [contactOpen, setContactOpen] = useState(false);
+const [showSplash, setShowSplash] = useState(true);
+
 
   /* ===== GALLERIES ===== */
   const galleries = {
@@ -108,10 +111,19 @@ const [contactOpen, setContactOpen] = useState(false);
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
   }, []);
+useEffect(() => {
+  const timer = setTimeout(() => {
+    setShowSplash(false);
+  }, 2400);
+
+  return () => clearTimeout(timer);
+}, []);
 
   return (
     <>
-      <Header />
+      {showSplash && <Splash />}
+   <Header onContactClick={() => setContactOpen(true)} />
+
 
       {/* ===== HERO ===== */}
       <section className="hero">

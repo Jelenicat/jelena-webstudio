@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "../styles/header.css";
 import logoHeader from "../assets/logo-header.png";
 
-function Header() {
+function Header({ onContactClick }) {
   const [active, setActive] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -28,15 +28,25 @@ function Header() {
     setMenuOpen(false);
   };
 
+  const handleContactClick = () => {
+    closeMenu();
+    onContactClick(); // 👈 otvara modal
+  };
+
   return (
     <header className={`header ${menuOpen ? "menu-open" : ""}`}>
+      {/* LOGO */}
       <img
         src={logoHeader}
         alt="Jelena Web Studio"
         className="logo"
-        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        onClick={() => {
+          closeMenu();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }}
       />
 
+      {/* MOBILE TOGGLE */}
       <input
         type="checkbox"
         id="menu-toggle"
@@ -52,6 +62,7 @@ function Header() {
         ☰
       </label>
 
+      {/* NAV */}
       <nav className="nav">
         <a
           href="#usluge"
@@ -69,13 +80,14 @@ function Header() {
           PORTFOLIO
         </a>
 
-        <a
-          href="#kontakt"
-          onClick={closeMenu}
-          className="btn-outline"
+        {/* KONTAKT → MODAL */}
+        <button
+          type="button"
+          className="btn-outline nav-item"
+          onClick={handleContactClick}
         >
           KONTAKT
-        </a>
+        </button>
       </nav>
     </header>
   );
