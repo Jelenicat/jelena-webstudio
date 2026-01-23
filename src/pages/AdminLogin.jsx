@@ -9,7 +9,7 @@ function AdminLogin() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (username === "admin" && password === "admin") {
+    if (username === "jw-admin" && password === "studio2026!") {
       localStorage.setItem("isAdmin", "true");
       navigate("/admin");
     } else {
