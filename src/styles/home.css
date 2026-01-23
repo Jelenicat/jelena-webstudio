@@ -893,3 +893,29 @@
   letter-spacing: 1px;
 }
 
+.gallery-close,
+.fullscreen-close {
+  color: #111;              /* ili #000 ili #1a1a1a */
+  -webkit-text-fill-color: #111; /* iOS fix */
+  background: transparent;
+  border: none;
+  appearance: none;
+  -webkit-appearance: none;
+  font-family: inherit;
+}
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+.gallery-close:hover,
+.fullscreen-close:hover {
+  opacity: 0.7;
+}
+
+.gallery-close:active,
+.fullscreen-close:active {
+  transform: scale(0.95);
+}
+.fullscreen-close {
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+}
