@@ -206,3 +206,23 @@
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+.interest-option {
+  color: #000;                 /* ili tvoja boja */
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.interest-option,
+.interest-option a {
+  color: #000 !important;
+  text-decoration: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+.interest-option {
+  appearance: none;
+  -webkit-appearance: none;
+}
