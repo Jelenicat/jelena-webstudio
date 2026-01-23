@@ -116,7 +116,7 @@ function ContactModal({ isOpen, onClose }) {
           </>
         ) : (
           <div className="contact-success">
-            <h3>Hvala ✨</h3>
+            <h3>Hvala!</h3>
             <p>Javiću vam se uskoro.</p>
           </div>
         )}
