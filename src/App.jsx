@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { useState } from "react";
 
 import Home from "./pages/Home";
@@ -9,22 +9,19 @@ function App() {
   const [isAdmin, setIsAdmin] = useState(false);
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
+    <Routes>
+      <Route path="/" element={<Home />} />
 
-        <Route
-          path="/admin"
-          element={
-            isAdmin ? (
-              <Admin />
-            ) : (
-              <AdminLogin onSuccess={() => setIsAdmin(true)} />
-            )
-          }
-        />
-      </Routes>
-    </BrowserRouter>
+      <Route
+        path="/admin-login"
+        element={<AdminLogin onSuccess={() => setIsAdmin(true)} />}
+      />
+
+      <Route
+        path="/admin"
+        element={isAdmin ? <Admin /> : <Navigate to="/admin-login" />}
+      />
+    </Routes>
   );
 }
 
