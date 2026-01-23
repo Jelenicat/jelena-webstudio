@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/admin-login.css";
+import "../styles/admin.css";
 
 function AdminLogin() {
   const [username, setUsername] = useState("");
