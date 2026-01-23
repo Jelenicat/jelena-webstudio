@@ -29,6 +29,9 @@ import app3 from "../assets/portfolio/app/app3.jpg";
 import app4 from "../assets/portfolio/app/app4.jpg";
 import app5 from "../assets/portfolio/app/app5.jpg";
 import app6 from "../assets/portfolio/app/app6.jpg";
+import { useEffect } from "react";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
 function Home() {
   /* ===== STATE ===== */
@@ -42,6 +45,22 @@ function Home() {
     web: [web1, web2, web3],
     app: [app1, app2, app3, app4, app5, app6],
   };
+useEffect(() => {
+  const testFirestore = async () => {
+    try {
+      await addDoc(collection(db, "test"), {
+        ok: true,
+        from: "jelena.webstudio",
+        createdAt: new Date(),
+      });
+      console.log("🔥 Firestore connected");
+    } catch (err) {
+      console.error("❌ Firestore error", err);
+    }
+  };
+
+  testFirestore();
+}, []);
 
   /* ===== INTERSECTION OBSERVER ===== */
   useEffect(() => {
