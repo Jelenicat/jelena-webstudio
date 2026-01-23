@@ -29,7 +29,7 @@ import app3 from "../assets/portfolio/app/app3.jpg";
 import app4 from "../assets/portfolio/app/app4.jpg";
 import app5 from "../assets/portfolio/app/app5.jpg";
 import app6 from "../assets/portfolio/app/app6.jpg";
-import { useEffect } from "react";
+
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
