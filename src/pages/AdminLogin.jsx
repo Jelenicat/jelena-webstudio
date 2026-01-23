@@ -1,46 +1,44 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function AdminLogin({ onSuccess }) {
+function AdminLogin() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     if (username === "admin" && password === "admin") {
-      onSuccess();
+      localStorage.setItem("isAdmin", "true");
+      navigate("/admin");
     } else {
-      setError("Pogrešni kredencijali");
+      alert("Pogrešni kredencijali");
     }
   };
 
   return (
-    <div style={{ padding: "80px" }}>
-      <h2>Admin login</h2>
+    <main>
+      <h1>Admin login</h1>
 
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="Username"
+          placeholder="username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-        <br /><br />
 
         <input
           type="password"
-          placeholder="Password"
+          placeholder="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <br /><br />
 
-        <button>Uloguj se</button>
+        <button type="submit">Uloguj se</button>
       </form>
-
-      {error && <p style={{ color: "red" }}>{error}</p>}
-    </div>
+    </main>
   );
 }
 
