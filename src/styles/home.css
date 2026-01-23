@@ -1,0 +1,895 @@
+/* =======================
+   HERO – DESKTOP
+======================= */
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  overflow: hidden;
+}
+
+/* picture i img moraju da popune hero */
+.hero picture,
+.hero picture img {
+  width: 100%;
+  height: 100%;
+}
+
+/* background slika */
+.hero picture img {
+  object-fit: cover;
+  filter: grayscale(100%) contrast(1.05) brightness(0.9);
+}
+
+/* overlay */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  transform: translateY(10px); /* blago niže */
+}
+
+/* hero logo */
+.hero-logo {
+  width: 580px;
+  max-width: 90%;
+  opacity: 0.95;
+
+  filter:
+    drop-shadow(0 8px 24px rgba(0, 0, 0, 0.28))
+    drop-shadow(0 2px 6px rgba(0, 0, 0, 0.18));
+
+  animation: logoFadeIn 1.4s ease-out forwards;
+}
+
+@keyframes logoFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 0.95;
+    transform: scale(1);
+  }
+}
+
+/* =======================
+   SERVICES – EDITORIAL
+======================= */
+
+.services {
+  padding: 40px 0 40px;
+  text-align: center;
+}
+
+/* logo umesto teksta */
+.services-label-logo {
+  display: block;
+  height: 220px;
+  margin: 24px auto 40px;
+  opacity: 0.95;
+}
+
+/* naslov */
+.services-title {
+  font-size: 42px;
+  font-weight: 400;
+  margin-bottom: 96px;
+}
+
+/* =======================
+   GRID
+======================= */
+
+.services-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  padding: 0 8%;
+}
+
+/* =======================
+   SERVICE ROW
+======================= */
+
+.service-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "text image";
+  gap: 80px;
+  align-items: center;
+  position: relative;
+
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.service-row.reverse {
+  grid-template-areas: "image text";
+}
+
+.service-row.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =======================
+   GRID AREAS
+======================= */
+
+.service-text {
+  position: relative; /* ⬅️ REFERENCA */
+  text-align: left;
+  max-width: 420px;
+}
+
+
+.service-row.reverse .service-text {
+  margin-left: auto;
+}
+
+.service-image {
+  grid-area: image;
+}
+
+/* =======================
+   BROJ (01 / 02)
+======================= */
+
+.service-number {
+  position: absolute;
+  top: -56px;
+  left: 0; /* ⬅️ uvek iznad naslova */
+  font-size: 120px;
+  font-weight: 300;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.04);
+  pointer-events: none;
+
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+
+.service-row.in-view .service-number {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =======================
+   VERTICAL LABEL (WEB / APP)
+======================= */
+
+.service-vertical {
+  position: absolute;
+  left: -56px;
+  top: 4px;
+
+  writing-mode: vertical-rl;
+  letter-spacing: 4px;
+  font-size: 12px;
+  opacity: 0.35;
+}
+
+/* =======================
+   TEXT
+======================= */
+
+.service-text h3 {
+  font-size: 26px;
+  margin: 36px 0 16px;
+}
+
+.service-text p {
+  font-size: 16px;
+  line-height: 1.65;
+  opacity: 0.85;
+}
+
+/* =======================
+   IMAGE
+======================= */
+
+.service-image img {
+  width: 100%;
+  height: 480px; /* KLJUČNO – ista visina */
+  object-fit: cover;
+  filter: grayscale(90%);
+  transition: transform 0.6s ease, box-shadow 0.6s ease;
+}
+
+.service-row:hover .service-image img {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.08);
+}
+
+/* =======================
+   MOBILE
+======================= */
+
+@media (max-width: 768px) {
+  .services {
+    padding: 24px 0 20px;
+  }
+
+  .services-label-logo {
+    height: 126px;
+    margin: 16px auto 32px;
+  }
+
+
+  .services-title {
+    max-width: 100%;
+    font-size: 25px;
+    line-height: 1.25;
+    letter-spacing: 0.7px;
+    margin-bottom: 40px;
+  }
+
+
+
+  .services-grid {
+    gap: 20px;
+    padding: 0 16px;
+  }
+
+  .service-row,
+  .service-row.reverse {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "image"
+      "text";
+    gap: 40px;
+  }
+
+  .service-number {
+    font-size: 88px;
+    top: -24px;
+    left: -8px;
+    right: auto;
+  }
+
+  .service-vertical {
+    display: none;
+  }
+
+  .service-text {
+    max-width: 100%;
+  }
+
+  .service-image img {
+    height: 360px;
+  }
+}
+/* osnovno stanje – samo elementi koji treba da se animiraju */
+.service-number,
+.service-text h3,
+.service-text p,
+.service-image {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* APP / WEB ostaje uvek vidljiv */
+.service-vertical {
+  opacity: 0.35;
+  transform: none;
+}
+
+/* animacije po redu */
+.service-row.in-view .service-number {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0s;
+}
+
+.service-row.in-view .service-text h3 {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.15s;
+}
+
+.service-row.in-view .service-text p {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.3s;
+}
+
+.service-row.in-view .service-image {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.45s;
+}
+.service-image img {
+  transform: scale(1.05);
+  transition: transform 1.2s ease;
+}
+
+.service-row.in-view .service-image img {
+  transform: scale(1);
+}
+.service-row:hover .service-text h3 {
+  letter-spacing: 0.6px;
+  transition: letter-spacing 0.4s ease;
+}
+
+.service-row:hover .service-image img {
+  transform: translateY(-6px) scale(1.01);
+}
+.service-text::before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.2);
+  margin-bottom: 24px;
+  transition: width 0.6s ease;
+}
+
+.service-row.in-view .service-text::before {
+  width: 32px;
+}
+@media (max-width: 768px) {
+  .service-vertical {
+    position: static;
+    writing-mode: horizontal-tb;
+
+    display: inline-block;
+    margin-bottom: 8px;
+
+    font-size: 12px;
+    letter-spacing: 2px;
+    opacity: 0.6;
+  }
+}
+@media (max-width: 768px) {
+  .service-vertical {
+    background: rgba(0,0,0,0.05);
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+  }
+}
+.service-vertical {
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+@media (max-width: 768px) {
+  .service-vertical {
+    position: static;
+    writing-mode: horizontal-tb;
+
+    display: inline-block;
+    margin-bottom: 8px;
+
+    font-size: 12px;
+    letter-spacing: 2px;
+
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+@media (max-width: 768px) {
+  .service-row.in-view .service-vertical {
+    opacity: 0.6;
+    transform: translateY(0);
+    transition-delay: 0.15s;
+  }
+}
+@media (max-width: 768px) {
+  .service-vertical {
+    position: static;
+    writing-mode: horizontal-tb;
+
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 4px 12px;
+
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    color: var(--accent-pink);
+    background: rgba(215, 161, 181, 0.12);
+    border-radius: 999px;
+
+    opacity: 0;
+    transform: translateY(6px);
+
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .service-row.in-view .service-vertical {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s;
+  }
+}
+
+
+/* =======================
+   PORTFOLIO
+======================= */
+
+.portfolio {
+  padding-top: 10px;
+  background: #f5f1e9;
+}
+
+/* logo umesto naslova */
+.portfolio-label-logo {
+  display: block;
+  height: 200px;
+  margin: 0 auto 2px;
+  opacity: 0.95;
+}
+
+/* =======================
+   GRID
+======================= */
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 60px;
+}
+
+/* =======================
+   CARD
+======================= */
+
+.portfolio-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.portfolio-card img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+
+  filter: grayscale(90%);
+  transition: transform 0.6s ease, filter 0.6s ease;
+}
+
+.portfolio-card:hover img {
+  transform: scale(1.05);
+  filter: grayscale(0%);
+}
+
+/* =======================
+   OVERLAY
+======================= */
+
+.portfolio-overlay {
+  position: absolute;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.25);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.portfolio-card:hover .portfolio-overlay {
+  opacity: 1;
+}
+
+.portfolio-overlay p {
+  color: white;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* =======================
+   MOBILE
+======================= */
+
+@media (max-width: 768px) {
+  .portfolio {
+    padding: 24px 16px 48px;
+  }
+
+  .portfolio-label-logo {
+    height: 120px;
+    margin-bottom: 24px;
+  }
+
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .portfolio-card img {
+    height: 320px;
+  }
+}
+
+
+/* DEFAULT – KARTICE SU VIDLJIVE */
+.portfolio-card {
+  opacity: 1;
+  transform: none;
+}
+
+/* ANIMACIJA – samo kad JS doda klasu */
+.portfolio.animate .portfolio-card {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.portfolio.animate.in-view .portfolio-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* stagger */
+.portfolio.animate.in-view .portfolio-card:nth-child(1) {
+  transition-delay: 0.1s;
+}
+.portfolio.animate.in-view .portfolio-card:nth-child(2) {
+  transition-delay: 0.25s;
+}
+
+.portfolio.in-view .portfolio-card:nth-child(3) {
+  transition-delay: 0.4s;
+}
+@media (max-width: 768px) {
+  .portfolio-overlay {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .portfolio-card.active .portfolio-overlay {
+    opacity: 1;
+  }
+
+  .portfolio-card.active img {
+    filter: grayscale(0%);
+  }
+}
+.portfolio-overlay {
+  background: linear-gradient(
+    rgba(215, 161, 181, 0.35),
+    rgba(0, 0, 0, 0.4)
+  );
+}
+.portfolio-overlay p {
+  color: white;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+/* =======================
+   MOBILE
+======================= */
+
+@media (max-width: 768px) {
+  /* hero */
+  .hero {
+    height: auto;
+    background-color: #f5f1e9;
+  }
+
+  .hero picture img {
+    height: auto;
+    object-fit: contain;
+    filter: grayscale(100%) contrast(1.05) brightness(0.95);
+  }
+
+  .hero-logo {
+    width: 300px;
+    max-width: 85%;
+  }
+
+
+
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+/* =======================
+   GALLERY MODAL
+======================= */
+
+.gallery-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 999;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gallery-content {
+  position: relative;
+  width: 90%;
+  max-width: 1200px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #f5f1e9;
+  padding: 2px;
+}
+
+.gallery-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-grid img {
+    height: 220px;
+  }
+}
+/* =======================
+   FULLSCREEN VIEW
+======================= */
+
+.fullscreen-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 1000;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fullscreen-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.fullscreen-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  margin: auto;
+  display: block;
+}
+
+/* close */
+.fullscreen-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+/* navigation */
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: white;
+  font-size: 48px;
+  cursor: pointer;
+  padding: 16px;
+  opacity: 0.8;
+}
+
+.nav.prev {
+  left: 24px;
+}
+
+.nav.next {
+  right: 24px;
+}
+
+.nav:hover {
+  opacity: 1;
+}
+
+/* mobile tweak */
+@media (max-width: 768px) {
+  .nav {
+    font-size: 36px;
+  }
+}
+.slide-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.fullscreen-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  animation: slideIn 0.35s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.fullscreen-image {
+  transition: transform 0.3s ease;
+  cursor: zoom-in;
+}
+
+.fullscreen-image.zoomed {
+  transform: scale(2);
+  cursor: zoom-out;
+}
+.thumbnail-strip {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  gap: 12px;
+  padding: 8px 12px;
+
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 999px;
+}
+
+.thumbnail-strip img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  opacity: 0.6;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.thumbnail-strip img:hover {
+  opacity: 1;
+}
+
+.thumbnail-strip img.active {
+  opacity: 1;
+  transform: scale(1.1);
+  outline: 2px solid #d7a1b5; /* roze akcenat */
+}
+@media (max-width: 768px) {
+  .thumbnail-strip img {
+    width: 40px;
+    height: 40px;
+  }
+}
+/* =======================
+   FOOTER
+======================= */
+
+/* =======================
+   FOOTER
+======================= */
+
+.footer {
+  background: #f5f1e9;
+  padding: 64px 16px 40px;
+  text-align: center;
+
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.footer.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+
+  margin-bottom: 16px;
+}
+
+.footer-link {
+  color: #111;
+  text-decoration: none;
+  opacity: 0.75;
+  transition: opacity 0.3s ease;
+}
+
+.footer-link:hover {
+  opacity: 1;
+}
+
+/* Instagram icon */
+.footer-icon {
+  width: 22px;
+  height: 22px;
+  color: #111;
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover .footer-icon {
+  color: #d7a1b5; /* roze akcenat */
+}
+
+/* email underline */
+.footer-email {
+  position: relative;
+  letter-spacing: 0.5px;
+}
+
+.footer-email::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 1px;
+  background: #d7a1b5;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.footer-email:hover::after {
+  opacity: 1;
+}
+
+/* copyright */
+.footer-copy {
+  font-size: 12px;
+  opacity: 0.5;
+  letter-spacing: 1px;
+}
+
