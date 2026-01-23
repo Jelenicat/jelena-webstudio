@@ -55,12 +55,13 @@ function Header({ onContactClick }) {
       />
 
       <label
-        htmlFor="menu-toggle"
-        className="menu-icon"
-        aria-label="Open menu"
-      >
-        ☰
-      </label>
+  htmlFor="menu-toggle"
+  className="menu-icon"
+  aria-label={menuOpen ? "Close menu" : "Open menu"}
+>
+  {menuOpen ? "✕" : "☰"}
+</label>
+
 
       {/* NAV */}
       <nav className="nav">
