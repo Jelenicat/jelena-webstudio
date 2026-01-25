@@ -64,7 +64,8 @@ function Header({ onContactClick }) {
 
 
       {/* NAV */}
-      <nav className={`nav mobile-menu ${menuOpen ? "open" : ""}`}>
+      <nav className={`nav ${menuOpen ? "open" : ""}`}>
+
 
         <a
           href="#usluge"
