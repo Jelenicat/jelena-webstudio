@@ -7,7 +7,7 @@ import Admin from "./pages/Admin";
 
 import CookieBanner from "./components/CookieBanner";
 import { loadAnalytics } from "./utils/analytics";
-
+import Privacy from "./pages/Privacy/Privacy";
 function App() {
   const isAdmin = localStorage.getItem("isAdmin") === "true";
 
@@ -32,6 +32,7 @@ function App() {
 
       {/* ✅ Cookie banner je globalan */}
       <CookieBanner onAccept={loadAnalytics} />
+      <Route path="/privacy" element={<Privacy />} />
     </>
   );
 }
