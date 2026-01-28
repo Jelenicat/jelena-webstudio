@@ -1,3 +1,7 @@
+/* ======================
+   COOKIE BANNER – BASE
+====================== */
+
 .cookie-banner {
   position: fixed;
   bottom: 24px;
@@ -24,14 +28,13 @@
   flex-direction: column;
   gap: 14px;
 
-  animation: cookieFadeUp 0.4s ease forwards;
+  animation: cookieFadeUp 0.35s ease forwards;
 }
 
-/* ✨ Suptilna animacija */
 @keyframes cookieFadeUp {
   from {
     opacity: 0;
-    transform: translate(-50%, 12px);
+    transform: translate(-50%, 16px);
   }
   to {
     opacity: 1;
@@ -39,6 +42,7 @@
   }
 }
 
+/* tekst */
 .cookie-banner p {
   font-size: 14px;
   line-height: 1.55;
@@ -46,7 +50,7 @@
   color: #1a1a1a;
 }
 
-/* link ka Privacy */
+/* link */
 .cookie-banner a {
   color: #1a1a1a;
   text-decoration: underline;
@@ -65,11 +69,40 @@
   gap: 10px;
 }
 
-/* mobilna sitna dorada */
-@media (max-width: 480px) {
+/* ======================
+   📱 MOBILE VARIJANTA
+====================== */
+
+@media (max-width: 600px) {
   .cookie-banner {
-    padding: 16px 16px;
-    border-radius: 16px;
+    left: 0;
+    bottom: 0;
+    transform: none;
+
+    width: 100%;
+    max-width: none;
+
+    border-radius: 18px 18px 0 0;
+    padding: 16px 16px 20px;
+
+    box-shadow:
+      0 -8px 24px rgba(0, 0, 0, 0.12);
+
+    animation: cookieSlideUp 0.35s ease forwards;
+  }
+
+  @keyframes cookieSlideUp {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  .cookie-banner p {
+    font-size: 13.5px;
+    line-height: 1.5;
   }
 
   .cookie-actions {
@@ -79,5 +112,7 @@
 
   .cookie-actions button {
     width: 100%;
+    padding: 12px 14px;
+    font-size: 14px;
   }
 }
