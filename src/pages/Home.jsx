@@ -51,28 +51,31 @@ const [showSplash, setShowSplash] = useState(true);
 
   /* ===== INTERSECTION OBSERVER ===== */
   useEffect(() => {
-    const rows = document.querySelectorAll(".service-row");
-    const portfolio = document.querySelector(".portfolio");
-    const footer = document.querySelector(".footer");
+  const rows = document.querySelectorAll(".service-row");
+  const portfolio = document.querySelector(".portfolio");
+  const footer = document.querySelector(".footer");
+  const intro = document.querySelector(".intro"); // ⬅️ DODATO
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("in-view");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.3 }
-    );
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
 
-    rows.forEach((row) => observer.observe(row));
-    if (portfolio) observer.observe(portfolio);
-    if (footer) observer.observe(footer);
+  rows.forEach((row) => observer.observe(row));
+  if (portfolio) observer.observe(portfolio);
+  if (footer) observer.observe(footer);
+  if (intro) observer.observe(intro); // ⬅️ DODATO
 
-    return () => observer.disconnect();
-  }, []);
+  return () => observer.disconnect();
+}, []);
+
 
   /* ===== SWIPE ===== */
   let touchStartX = 0;
@@ -135,6 +138,16 @@ useEffect(() => {
           <img src={logo} alt="jelena webstudio logo" className="hero-logo" />
         </div>
       </section>
+{/* ===== INTRO TEXT ===== */}
+<section className="intro">
+  <span className="intro-label">Digital studio</span>
+  <p className="intro-text">
+    Dizajniram i razvijam <strong>moderne web sajtove</strong> i web aplikacije
+    prilagođene vašem brendu i poslovnim ciljevima.
+  </p>
+</section>
+
+
 
       {/* ===== SERVICES ===== */}
       <section className="services" id="usluge">
