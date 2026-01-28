@@ -1,17 +1,59 @@
+import { useEffect } from "react";
+
 export default function PrivacyPolicyModal({ open, onClose }) {
+  // 🔒 Disable background scroll (bitno za iOS)
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  // ⌨️ Close on ESC
+  useEffect(() => {
+    function handleKey(e) {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    }
+
+    if (open) {
+      window.addEventListener("keydown", handleKey);
+    }
+
+    return () => {
+      window.removeEventListener("keydown", handleKey);
+    };
+  }, [open, onClose]);
+
   if (!open) return null;
 
   return (
-    <div className="privacy-overlay" onClick={onClose}>
+    <div
+      className="privacy-overlay"
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="privacy-title"
+    >
       <div
         className="privacy-modal"
         onClick={(e) => e.stopPropagation()}
       >
-        <button className="privacy-close" onClick={onClose}>
+        <button
+          className="privacy-close"
+          onClick={onClose}
+          aria-label="Close privacy policy"
+        >
           ✕
         </button>
 
-        <h2>Privacy Policy</h2>
+        <h2 id="privacy-title">Privacy Policy</h2>
 
         <p>
           Ovaj sajt poštuje vašu privatnost i obrađuje podatke u skladu sa važećim
