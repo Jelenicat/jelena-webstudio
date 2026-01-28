@@ -1049,3 +1049,63 @@ button {
     line-height: 1.6;
   }
 }
+/* =======================
+   📱 MOBILE MICRO ANIMATION
+======================= */
+
+@media (max-width: 768px) {
+  .intro {
+    animation: introFloatIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .intro-label {
+    animation: labelFloat 0.7s ease-out 0.15s forwards;
+  }
+
+  .intro-text {
+    animation: textFloat 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.25s forwards;
+  }
+}
+
+/* keyframes */
+
+@keyframes introFloatIn {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes labelFloat {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 0.6;
+    transform: translateY(0);
+  }
+}
+
+@keyframes textFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  80% {
+    opacity: 0.85;
+    transform: translateY(-1px);
+  }
+  100% {
+    opacity: 0.85;
+    transform: translateY(0);
+  }
+}
