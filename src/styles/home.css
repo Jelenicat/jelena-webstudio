@@ -1109,3 +1109,57 @@ button {
     transform: translateY(0);
   }
 }
+
+/* =======================
+   HERO LOGO HALO
+======================= */
+
+.hero-logo-wrap {
+  position: relative;
+  padding: 36px 56px;
+}
+
+.hero-halo {
+  position: absolute;
+  inset: -28% -22%;
+  border-radius: 999px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 231, 163, 0.35),
+    rgba(247, 193, 213, 0.14) 45%,
+    transparent 72%
+  );
+  filter: blur(26px);
+  animation: haloPulse 8s ease-in-out infinite;
+  z-index: 0;
+}
+
+.hero-logo {
+  position: relative;
+  z-index: 1;
+  animation: logoFadeIn 0.9s ease-out forwards, logoFloat 6s ease-in-out infinite 0.6s;
+}
+
+@keyframes haloPulse {
+  0%, 100% { transform: scale(0.99); opacity: 0.7; }
+  50% { transform: scale(1.03); opacity: 0.95; }
+}
+
+@keyframes logoFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@media (max-width: 768px) {
+  .hero-logo-wrap {
+    padding: 22px 30px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-halo,
+  .hero-logo {
+    animation: none !important;
+  }
+}
+

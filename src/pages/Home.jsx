@@ -134,8 +134,11 @@ useEffect(() => {
           <source media="(max-width: 768px)" srcSet={heroMobile} />
           <img src={heroDesktop} alt="Hero background" />
         </picture>
-        <div className="hero-overlay">
-          <img src={logo} alt="jelena webstudio logo" className="hero-logo" />
+                <div className="hero-overlay">
+          <div className="hero-logo-wrap">
+            <div className="hero-halo" aria-hidden="true"></div>
+            <img src={logo} alt="jelena webstudio logo" className="hero-logo" />
+          </div>
         </div>
       </section>
 {/* ===== INTRO TEXT ===== */}
@@ -374,3 +377,5 @@ useEffect(() => {
 }
 
 export default Home;
+
+
