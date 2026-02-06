@@ -221,6 +221,7 @@
   .services-label-logo {
     height: 126px;
     margin: 16px auto 32px;
+    
   }
 
 
@@ -593,9 +594,25 @@
     filter: grayscale(100%) contrast(1.05) brightness(0.95);
   }
 
+  .hero picture,
+  .hero picture img {
+    display: block;
+  }
+
+  .hero-overlay {
+    transform: none;
+  }
+
+  .hero-logo-wrap {
+    transform: translateX(20px);
+  }
+
+
+
   .hero-logo {
     width: 300px;
     max-width: 85%;
+    animation: logoFadeIn 0.9s ease-out forwards;
   }
 
 
